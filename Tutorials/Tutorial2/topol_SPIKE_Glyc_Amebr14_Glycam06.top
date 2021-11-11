@@ -1,0 +1,35 @@
+;
+;       Force field was read from the standard Gromacs share directory.
+;
+
+; Include forcefield parameters
+#include "ffamber14_BERGER.itp"
+#include "SPIKE_E_glyc_amber14_glyc06.itp"
+#include "SPIKE_F_glyc_amber14_glyc06.itp"
+#include "SPIKE_G_glyc_amber14_glyc06.itp"
+
+; Include water topology
+#include "tip3p.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "Na_ion.itp"
+;#include "amber14sb.ff/ions.itp"
+
+[ system ]
+; Name
+SPIKE  in water
+
+[ molecules ]
+; Compound        #mols
+SPIKE_E           1
+SPIKE_F           1
+SPIKE_G           1
+SOL         203134
+NA               20
